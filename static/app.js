@@ -26,9 +26,3 @@ document.addEventListener('click', async (e) => {
     }
   }
 })
-
-// Optional: handle regenerate responses if triggered elsewhere
-async function regenerateGrammar(gid) {
-  const res = await fetch('/api/regenerate/' + gid, {method: 'POST'})
-  return res.json()
-}

@@ -89,3 +89,5 @@ Abre [http://localhost:5000](http://localhost:5000) y deja abierta la terminal m
 ## Detalles técnicos opcionales
 
 La aplicación utiliza `grammar.db`, que ya contiene el temario. No ejecutes `scripts/seed_sqlite.py` para el uso normal: volver a cargar el temario eliminará el progreso guardado.
+
+## License and price: A coffe if for you is well :) . See you at EOI!!!
