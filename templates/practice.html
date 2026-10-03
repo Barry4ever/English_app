@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Practicar: {{grammar.title}}</h2>
+<div id="exercises">
+  {% for ex in exercises %}
+    <div class="exercise" data-index="{{ loop.index0 }}" data-type="{{ ex.type or 'short' }}">
+      <p><strong>Pregunta {{ loop.index }}:</strong> {{ ex.q }}</p>
+      {% if ex.type == 'mcq' %}
+        <div class="options">
+          {% for opt in ex.options %}
+            <label><input type="radio" name="opt-{{ loop.index0 }}" value="{{opt}}"> {{opt}}</label><br>
+          {% endfor %}
+        </div>
+      {% else %}
+        <input type="text" class="answer" />
+      {% endif %}
+      <button class="check">Comprobar</button>
+      <div class="result"></div>
+    </div>
+  {% endfor %}
+</div>
+<script src="/static/app.js"></script>
+{% endblock %}

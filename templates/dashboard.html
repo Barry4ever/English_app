@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<section>
+  <h3>Grammars estudiados</h3>
+  <form method="get" action="/">
+    <label for="level">Filtrar por nivel:</label>
+    <select id="level" name="level" onchange="this.form.submit()">
+      <option value="">Todos</option>
+      {% for lv in levels %}
+        <option value="{{lv}}" {% if selected_level==lv %}selected{% endif %}>{{lv}}</option>
+      {% endfor %}
+    </select>
+  </form>
+  <ul>
+    {% for g in grammars %}
+      <li>
+        <a href="/grammar/{{g.id}}">{{g.title}}</a>
+        {% if progress and progress[g.id] %}
+          - <strong>{{progress[g.id].percent}}%</strong> ({{progress[g.id].correct}}/{{progress[g.id].attempts}})
+        {% endif %}
+      </li>
+    {% else %}
+      <li>No hay grammars aún.</li>
+    {% endfor %}
+  </ul>
+</section>
+<section>
+  <h3>Últimos temas</h3>
+  <p>(Ordenado por ID)</p>
+  <ul>
+    {% for g in grammars[-5:] %}
+      <li>{{g.title}}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{grammar.title}}</h2>
+<section>
+  <h3>Explicación</h3>
+  <p>{{data.explanation}}</p>
+</section>
+<section>
+  <h3>Estructura</h3>
+  <pre>{{data.structure}}</pre>
+</section>
+<section>
+  <h3>Ejemplos</h3>
+  <ul>
+    {% for e in data.examples %}
+      {% set sent = e.get('sentence') if e is mapping else (e.sentence if e is mapping else None) %}
+      {% if sent %}
+        <li>
+          <strong>{{ e['sentence'] }}</strong>
+          <div><em>{{ e['notes'] }}</em></div>
+        </li>
+      {% else %}
+        <li>{{ e }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+<section>
+  <h3>Errores frecuentes</h3>
+  <ul>
+    {% for err in data.common_errors %}
+      <li>{{err}}</li>
+    {% endfor %}
+  </ul>
+</section>
+<section>
+  <h3>Ejercicios online</h3>
+  <ul>
+    {% for link in data.practice_links %}
+      <li><a href="{{link.url}}" target="_blank" rel="noopener noreferrer">{{link.title}}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+<section>
+  <h3>Progreso</h3>
+  <p>Intentos: {{progress.attempts}}, Aciertos: {{progress.correct}}, Errores: {{progress.wrong}} — <strong>{{progress.percent}}%</strong></p>
+</section>
+<section>
+  <h3>Simulaciones oficiales B1</h3>
+  <ul>
+    {% for link in data.exam_links %}
+      <li><a href="{{link.url}}" target="_blank" rel="noopener noreferrer">{{link.title}}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
