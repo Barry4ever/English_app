@@ -84,6 +84,8 @@ podman build -t grammar-app:latest .
 podman run --rm -p 5000:5000 -v "$PWD:/app:Z" grammar-app:latest
 ```
 
+## License : A coffe if for you it's well. See you at EOI!!
+
 Abre [http://localhost:5000](http://localhost:5000) y deja abierta la terminal mientras la app esté en uso.
 
 ## Detalles técnicos opcionales
